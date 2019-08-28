@@ -1,5 +1,7 @@
 package com.haivo.diana.Model;
 
+import com.haivo.diana.Util.NoteUtils;
+
 public class TunerResult {
 
     public double percentage;
@@ -106,9 +108,9 @@ public class TunerResult {
     public float frequency;
     private float tolerance = .1f;
     public TunerResult.INDICATOR_TYPE type;
-    private ExternalNote noteObj;
+    private DetectedNote noteObj;
 
-    public TunerResult(double freq, ExternalNote[] notesMatch, TunerOptions tunerOptions) {
+    public TunerResult(double freq, DetectedNote[] notesMatch, TunerOptions tunerOptions) {
         this.tunerOptions = tunerOptions;
         int index = -1;
         Double dist = java.lang.Double.MAX_VALUE;
@@ -119,13 +121,13 @@ public class TunerResult {
                 dist = d;
             }
         }
-        ExternalNote mNote = notesMatch[index];
+        DetectedNote mNote = notesMatch[index];
         this.octave = mNote.octave;
         this.note = mNote.getTranslatedNote();
 
         if (freq != 0) {
 
-            this.percentage = ExternalNote.parse(freq, tunerOptions).offsetFrom(mNote) + 50;
+            this.percentage = NoteUtils.parseNote(freq, tunerOptions).offsetFrom(mNote) + 50;
             this.percentageActual = this.percentage;
 
             if (this.percentage > 50 - 50 * tolerance && this.percentage < 50 + 50 * tolerance) {

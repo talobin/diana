@@ -1,11 +1,12 @@
 package com.haivo.diana.Model;
 
 import android.content.Context;
+import com.haivo.diana.Util.NoteUtils;
 
 public class TunerMode {
     public String name;
     public String group;
-    public ExternalNote[] notesObjects;
+    public DetectedNote[] notesObjects;
     public String notes;
     public TunerOptions tunerOptions;
 
@@ -29,19 +30,19 @@ public class TunerMode {
         this.group = group;
     }
 
-    public ExternalNote[] getNotesObjects() {
+    public DetectedNote[] getNotesObjects() {
         return notesObjects;
     }
 
-    public ExternalNote[] getNotesObjectsForGroup() {
+    public DetectedNote[] getNotesObjectsForGroup() {
         if (isChromatic()) {
-            return new ExternalNote[] { notesObjects[0] };
+            return new DetectedNote[] { notesObjects[0] };
         } else {
             return notesObjects;
         }
     }
 
-    public void setNotesObjects(ExternalNote[] notesObjects) {
+    public void setNotesObjects(DetectedNote[] notesObjects) {
         this.notesObjects = notesObjects;
     }
 
@@ -52,10 +53,10 @@ public class TunerMode {
     public void setNotes(String notes) {
         this.notes = notes;
         String[] notesArr = notes.split(" ");
-        ExternalNote[] notesMatch = new ExternalNote[notesArr.length];
+        DetectedNote[] notesMatch = new DetectedNote[notesArr.length];
         for (int i = 0; i < notesArr.length; i++) {
             if (!notesArr[i].trim().equals("") && !notesArr[i].isEmpty()) {
-                notesMatch[i] = ExternalNote.parse(notesArr[i], tunerOptions);
+                notesMatch[i] = NoteUtils.parseNote(notesArr[i], tunerOptions);
             }
         }
         this.setNotesObjects(notesMatch);
@@ -70,7 +71,7 @@ public class TunerMode {
     }
 
     public void setInTune(String noteName) {
-        for (ExternalNote n : notesObjects) {
+        for (DetectedNote n : notesObjects) {
             if (n.toString().equals(noteName)) {
                 n.isInTune.set(true);
             }
@@ -89,7 +90,7 @@ public class TunerMode {
         if (name.equals("Chromatic")) {
             return "Any Notes";
         } else {
-            return ExternalNote.getNotes(getNotes(), tunerOptions);
+            return DetectedNote.getNotes(getNotes(), tunerOptions);
         }
     }
 
