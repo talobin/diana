@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Button">
+        <attr name="text" format="string" />
+        <attr name="variant" format="string" />
+        <attr name="ghost" format="boolean" />
+    </declare-styleable>
+</resources>

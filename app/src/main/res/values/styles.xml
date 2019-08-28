@@ -1,0 +1,150 @@
+<resources>
+    <!-- THEMING HERE: https://stackoverflow.com/questions/12703757/android-themes-defining-colours-in-custom-themes -->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:background">@color/colorPrimary</item>-->
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColorTertiary">@android:color/white</item>
+        <item name="android:textColorPrimaryInverse">@android:color/white</item>
+        <item name="android:textColorSecondaryInverse">@android:color/white</item>
+        <item name="android:textColorTertiaryInverse">@android:color/white</item>
+        <item name="preferenceTheme">@style/PrefsTheme</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <style name="PrefsTheme" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+    </style>
+
+    <style name="AppTheme.Dialog" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/spacegrotesk_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/button_white_background</item>
+    </style>
+
+    <style name="AppTheme.TextViewStatus" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">20.0</item>
+    </style>
+
+    <style name="AppTheme.Navigation">
+    </style>
+
+    <style name="AppTheme.Navigation.NavigationBlock">
+        <!--<item name="android:paddingLeft">25dp</item>-->
+        <!--<item name="android:paddingRight">25dp</item>-->
+    </style>
+
+    <style name="AppTheme.Intro">
+    </style>
+
+    <style name="AppTheme.Intro.Title">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/spacegrotesk_semibold</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="AppTheme.Intro.Text">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:fontFamily">@font/spacegrotesk_medium</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:lineSpacingMultiplier">1.4</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="AppTheme.BottomSheet" parent="BaseBottomSheetDialog">
+    </style>
+
+    <style name="AppTheme.BottomSheet.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="AppTheme.PopupMenuItem">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <!--<item name="android:layout_marginEnd">40dp</item>-->
+        <item name="android:background">@drawable/rect_selector</item>
+    </style>
+
+    <style name="AppTheme.ButtonView">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="AppTheme.Preference">
+    </style>
+
+    <style name="AppTheme.Preference.Root">
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="AppTheme.Preference.ChoiceItem">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="AppTheme.Preference.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/spacegrotesk_semibold</item>
+    </style>
+
+    <style name="AppTheme.Preference.Summary">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:fontFamily">@font/spacegrotesk_semibold</item>
+    </style>
+
+    <style name="AppTheme.Preference.Label">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:fontFamily">@font/spacegrotesk_semibold</item>
+    </style>
+
+    <style name="AppTheme.Preference.SeekBar">
+        <item name="android:thumb">@drawable/seekbar_thumb</item>
+        <item name="android:progressDrawable">@drawable/seekbar_progress</item>
+        <item name="android:layout_marginLeft">-10dp</item>
+        <item name="android:layout_marginRight">-10dp</item>
+    </style>
+
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+
+</resources>

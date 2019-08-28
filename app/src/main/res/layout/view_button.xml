@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    android:id="@+id/root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="120dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:background="?attr/selectableItemBackground"
+    style="@style/AppTheme.ButtonView">
+    <TextView
+        android:id="@+id/button"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:fontFamily="@font/spacegrotesk_semibold"
+        android:text="Button Text" />
+</merge>

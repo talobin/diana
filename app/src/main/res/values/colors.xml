@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#11141B</color>
+    <color name="colorPrimaryDark">#11141B</color>
+    <color name="colorPrimaryLight">#1A202B</color>
+    <color name="colorPrimaryFade">#AA11141B</color>
+    <color name="colorAccent">@color/colorBlue</color>
+    <color name="colorAccentDark">@color/colorBlueDark</color>
+    <color name="colorAccentTranslucent">@color/colorBlueTranslucent</color>
+    <color name="colorAccentTransparent">@color/colorBlueTransparent</color>
+    <color name="colorAccentFade">@color/colorBlueFade</color>
+    <color name="colorGreen">#00CBA9</color>
+    <color name="colorBlue">#5AC8FA</color>
+    <color name="colorBlueDark">#066794</color>
+    <color name="colorRed">#FF2851</color>
+    <color name="colorWhite">#F2F4F4</color>
+    <color name="colorGray">#333333</color>
+    <color name="colorTextLight">#9EA1A7</color>
+    <color name="colorBackgroundLight">#252A2C</color>
+    <color name="colorTextSecondary">#44FFFFFF</color>
+    <color name="colorWhiteTransparent">#00F2F4F4</color>
+    <color name="colorGrayTransparent">#00333333</color>
+    <color name="colorGreenTransparent">#0000CBA9</color>
+    <color name="colorRedTransparent">#00FF2851</color>
+    <color name="colorBlueTransparent">#005AC8FA</color>
+    <color name="colorWhiteFade">#22F2F4F4</color>
+    <color name="colorWhiteTranslucent">#11F2F4F4</color>
+    <color name="colorGrayTranslucent">#66333333</color>
+    <color name="colorGreenTranslucent">#1800CBA9</color>
+    <color name="colorBlueTranslucent">#185AC8FA</color>
+    <color name="colorRedFade">#33FF2851</color>
+    <color name="colorGreenFade">#5500CBA9</color>
+    <color name="colorBlueFade">#555AC8FA</color>
+    <color name="colorRedTranslucent">#18FF2851</color>
+    <color name="colorGreenDark">#185A4F</color>
+
+    <color name="colorDanger">@color/colorRed</color>
+    <color name="colorDangerFade">@color/colorRedFade</color>
+    <color name="colorDangerTranslucent">@color/colorRedTranslucent</color>
+    <color name="colorDangerTransparent">@color/colorRedTransparent</color>
+    <color name="colorDialogDim">@color/colorPrimaryFade</color>
+</resources>
