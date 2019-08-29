@@ -1,8 +1,10 @@
 package com.haivo.diana.Util;
 
+import com.haivo.diana.Model.BaseNote;
 import com.haivo.diana.Model.DetectedNote;
 import com.haivo.diana.Model.TunerOptions;
 
+import static com.haivo.diana.Model.BaseNote.CHROMATIC_NOTES;
 import static com.haivo.diana.Model.BaseNote.DEFAULT_NOTES;
 
 public final class NoteUtils {
@@ -31,6 +33,17 @@ public final class NoteUtils {
 
         double offset = 100 * (aboveA - Math.round(aboveA));
         return new DetectedNote(note, octave, closest, frequency, offset, tunerOptions);
+    }
+
+    public static String[] getNotesByInstrument(BaseNote.Instrument mode) {
+        switch (mode) {
+            case KALIMBA:
+                return BaseNote.KALIMBA_NOTES;
+            case FLUTE:
+                return BaseNote.VIETNAMESE_FLUTE_NOTES;
+            default:
+                return CHROMATIC_NOTES;
+        }
     }
 
     private static int indexOfNote(String[] a, String s) {

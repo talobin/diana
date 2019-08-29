@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.filipetrovic.auxilium.com.haivo.diana.MainActivity">
+    tools:context="com.haivo.diana.MainActivity">
 
     <fragment
         android:id="@+id/fragment_tuner_view"

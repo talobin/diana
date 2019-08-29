@@ -11,17 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import com.haivo.diana.MainActivity;
-import com.haivo.diana.MusicEarManager;
-import com.haivo.diana.Util.Tuner;
+import com.haivo.diana.Model.BaseNote;
+import com.haivo.diana.Model.MusicPresenter;
 import com.haivo.diana.Model.TunerResult;
-import com.haivo.diana.databinding.FragmentTunerBinding;
+import com.haivo.diana.MusicEar;
+import com.haivo.diana.MusicFactory;
+import com.haivo.diana.R;
+import com.haivo.diana.Util.Tuner;
 
 public class MainFragment extends Fragment {
 
     private MainActivity activity;
-    private FragmentTunerBinding binding;
+    private MusicPresenter presenter;
+    private String currentNote;
 
     public MainFragment() {
+        MusicFactory.getInstance().setInstrument(BaseNote.Instrument.KALIMBA);
+        MusicFactory.getInstance().startRandom();
+        currentNote = MusicFactory.getInstance().getNextNote().getNoteLabel();
     }
 
     @Override
@@ -30,30 +37,42 @@ public class MainFragment extends Fragment {
     }
 
     public void start() {
-        if (MusicEarManager.isMicrophoneAvailable()) {
-            MusicEarManager.getInstance().start(new Tuner.OnNoteFoundListener() {
+        if (MusicEar.isMicrophoneAvailable()) {
+            MusicEar.getInstance().start(new Tuner.OnNoteFoundListener() {
                 @Override
                 public void onEvent(TunerResult note) {
                     Log.d("Hai",
                           note.getType() + "|" + note.getFrequencyLabel() + "|" + note.getPercentageLabel() + "|" + note
                               .getNoteLabelWithAugAndOctave() + "|" + note.statusText);
+
+                    checkNote(note.getNoteLabelWithAugAndOctave());
+                    //Log.d("Hai", "Generated Note: " + MusicFactory.getInstance().getNextNote().getNoteLabel());
                 }
             });
-        } else if ((!MusicEarManager.getInstance().isRunning())) {
+        } else if ((!MusicEar.getInstance().isRunning())) {
             Toast.makeText(this.getContext(), "Cannot access Mic", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void checkNote(String detectedNote) {
+        presenter.setDetectedNote(detectedNote);
+        if (detectedNote != null && currentNote != null && detectedNote.equals(currentNote)) {
+            currentNote = MusicFactory.getInstance().getNextNote().getNoteLabel();
+            presenter.setTargetNote(currentNote);
+        }
+    }
+
     public void stop() {
-        MusicEarManager.getInstance().stop();
+        MusicEar.getInstance().stop();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = FragmentTunerBinding.inflate(inflater, container, false);
 
-        return binding.getRoot();
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        presenter = (MusicPresenter) rootView.findViewById(R.id.presenter);
+        presenter.setTargetNote(currentNote);
+        return rootView;
     }
 
     @Override

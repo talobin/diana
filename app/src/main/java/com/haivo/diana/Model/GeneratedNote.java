@@ -10,4 +10,8 @@ public class GeneratedNote extends BaseNote {
     public long getTimeStamp() {
         return timeStamp;
     }
+
+    public String getNoteLabel() {
+        return this.translatedNote + this.octave;
+    }
 }

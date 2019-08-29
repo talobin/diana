@@ -6,15 +6,15 @@ import android.media.MediaRecorder;
 import com.haivo.diana.Model.TunerMode;
 import com.haivo.diana.Util.Tuner;
 
-public class MusicEarManager {
-    private static final MusicEarManager ourInstance = new MusicEarManager();
+public class MusicEar {
+    private static final MusicEar ourInstance = new MusicEar();
     private Tuner tuner;
 
-    public static MusicEarManager getInstance() {
+    public static MusicEar getInstance() {
         return ourInstance;
     }
 
-    private MusicEarManager() {
+    private MusicEar() {
     }
 
     public final boolean isRunning() {

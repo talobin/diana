@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.haivo.diana.Model.MusicPresenter
+            android:id="@+id/presenter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright">
 
+        </com.haivo.diana.Model.MusicPresenter>
     </android.support.constraint.ConstraintLayout>
 </layout>
