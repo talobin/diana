@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.haivo.diana.Model.MusicPresenter
+
+        <com.haivo.diana.View.MusicPresenter
             android:id="@+id/presenter"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_bright">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
 
-        </com.haivo.diana.Model.MusicPresenter>
-    </android.support.constraint.ConstraintLayout>
+        <com.haivo.diana.View.KalimbaView
+            android:id="@+id/kalimba"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
 </layout>

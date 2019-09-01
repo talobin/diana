@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.haivo.diana.MainActivity;
 import com.haivo.diana.Model.BaseNote;
-import com.haivo.diana.Model.MusicPresenter;
 import com.haivo.diana.Model.TunerResult;
-import com.haivo.diana.MusicEar;
-import com.haivo.diana.MusicFactory;
+import com.haivo.diana.Core.MusicEar;
+import com.haivo.diana.Core.MusicFactory;
 import com.haivo.diana.R;
 import com.haivo.diana.Util.Tuner;
 
@@ -24,6 +23,7 @@ public class MainFragment extends Fragment {
     private MainActivity activity;
     private MusicPresenter presenter;
     private String currentNote;
+    private KalimbaView instrument;
 
     public MainFragment() {
         MusicFactory.getInstance().setInstrument(BaseNote.Instrument.KALIMBA);
@@ -56,9 +56,11 @@ public class MainFragment extends Fragment {
 
     private void checkNote(String detectedNote) {
         presenter.setDetectedNote(detectedNote);
+        instrument.setDetectedNote(detectedNote);
         if (detectedNote != null && currentNote != null && detectedNote.equals(currentNote)) {
             currentNote = MusicFactory.getInstance().getNextNote().getNoteLabel();
             presenter.setTargetNote(currentNote);
+            instrument.setTargetNote(currentNote);
         }
     }
 
@@ -70,8 +72,13 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        presenter = (MusicPresenter) rootView.findViewById(R.id.presenter);
+        presenter =  rootView.findViewById(R.id.presenter);
+        instrument = rootView.findViewById(R.id.kalimba);
         presenter.setTargetNote(currentNote);
+        if(instrument==null){
+            instrument = (KalimbaView) ((ViewGroup)rootView).getChildAt(1);
+        }
+        instrument.setTargetNote(currentNote);
         return rootView;
     }
 
