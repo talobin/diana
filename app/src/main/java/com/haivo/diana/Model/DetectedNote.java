@@ -1,6 +1,6 @@
 package com.haivo.diana.Model;
 
-import android.databinding.ObservableBoolean;
+import androidx.databinding.ObservableBoolean;
 import com.haivo.diana.Util.NoteUtils;
 
 public class DetectedNote extends BaseNote {
