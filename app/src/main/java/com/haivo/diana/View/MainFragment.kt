@@ -13,6 +13,7 @@ import com.haivo.diana.Core.MusicEar
 import com.haivo.diana.Core.MusicFactory
 import com.haivo.diana.MainActivity
 import com.haivo.diana.Model.BaseNote
+import com.haivo.diana.Model.TunerResult
 import com.haivo.diana.R
 import com.haivo.diana.Util.Tuner
 
@@ -31,13 +32,15 @@ class MainFragment : Fragment() {
 
     fun start() {
         if (MusicEar.isMicrophoneAvailable) {
-            MusicEar.start(Tuner.OnNoteFoundListener { note ->
-                Log.d("Hai",
-                        note.type.toString() + "|" + note.frequencyLabel + "|" + note.percentageLabel + "|" + note
-                                .noteLabelWithAugAndOctave + "|" + note.statusText)
+            MusicEar.start(object : Tuner.OnNoteFoundListener {
+                override fun onEvent(note: TunerResult) {
+                    Log.d("Hai",
+                            note.type.toString() + "|" + note.frequencyLabel + "|" + note.percentageLabel + "|" + note
+                                    .noteLabelWithAugAndOctave + "|" + note.statusText)
 
-                checkNote(note.noteLabelWithAugAndOctave)
-                //Log.d("Hai", "Generated Note: " + MusicFactory.getInstance().getNextNote().getNoteLabel());
+                    checkNote(note.noteLabelWithAugAndOctave)
+                    //Log.d("Hai", "Generated Note: " + MusicFactory.getInstance().getNextNote().getNoteLabel());
+                }
             })
         } else if (!MusicEar.isRunning) {
             Toast.makeText(this.context, "Cannot access Mic", Toast.LENGTH_SHORT).show()

@@ -7,7 +7,7 @@ import kotlin.math.roundToInt
 
 class TunerResult(
         freq: Double,
-        notesMatch: Array<BaseNote.DetectedNote>,
+        notesMatch: Array<BaseNote.DetectedNote?>,
         private val tunerOptions: TunerOptions) {
 
     var percentage: Double = 0.toDouble()
@@ -16,7 +16,7 @@ class TunerResult(
     var statusText = ""
     var octave: Int = 0
     var frequency: Float = 0.toFloat()
-    var type: INDICATOR_TYPE
+    var type: IndicatorType
     private val tolerance = .1f
     private var noteObj: BaseNote.DetectedNote? = null
 
@@ -36,26 +36,26 @@ class TunerResult(
         get() = note + octave
 
     val frequencyLabel: String
-        get() = Math.round(frequency).toString() + " Hz"
+        get() = frequency.roundToInt().toString() + " Hz"
 
     val octaveLabel: String
         get() = if (this.octave != 0) this.octave.toString() else ""
 
     val percentageLabel: Float
-        get() = (Math.round(this.percentageActualValue) - 50f) / 10f
+        get() = (this.percentageActualValue.roundToInt() - 50f) / 10f
 
     val isCorrect: Boolean
-        get() = this.type == INDICATOR_TYPE.CORRECT
+        get() = this.type == IndicatorType.CORRECT
 
     val isValid: Boolean
-        get() = this.type != INDICATOR_TYPE.INACTIVE
+        get() = this.type != IndicatorType.INACTIVE
 
     val isNull: Boolean
-        get() = this.type == INDICATOR_TYPE.INACTIVE
+        get() = this.type == IndicatorType.INACTIVE
 
     val noteAug: String
         get() {
-            return noteObj?.let{
+            return noteObj?.let {
                 if (it.isAccidental && this.tunerOptions.naming == "english") {
                     return if (this.tunerOptions.sharps) "#" else "b"
                 } else {
@@ -65,53 +65,50 @@ class TunerResult(
         }
 
 
-
-    enum class INDICATOR_TYPE {
+    enum class IndicatorType {
         ACTIVE, CORRECT, INACTIVE, INCORRECT
     }
 
     fun getPercentage(): Double? {
-        return if (this.type != INDICATOR_TYPE.INACTIVE) {
+        return if (this.type != IndicatorType.INACTIVE) {
             this.percentage
         } else {
             -1.00
         }
     }
 
-    fun getPercentageActual(): Double {
-        return floor(this.percentageActualValue - 50f) / 10f
-    }
+    fun getPercentageActual(): Double = floor(this.percentageActualValue - 50f) / 10f
 
     init {
         var index = -1
         var dist: Double = java.lang.Double.MAX_VALUE
         for (i in notesMatch.indices) {
-            val d = abs(freq - notesMatch[i].frequency)
+            val d = abs(freq - (notesMatch[i]?.frequency ?: 0.0))
             if (d < dist) {
                 index = i
                 dist = d
             }
         }
         val mNote = notesMatch[index]
-        this.octave = mNote.octave
-        this.note = mNote.translatedNote
+        this.octave = mNote?.octave ?: 0
+        this.note = mNote?.translatedNote ?: ""
 
-        if (freq != 0.0) {
+        if (freq != 0.0 && mNote != null) {
 
             this.percentage = NoteUtils.parseNote(freq, tunerOptions).offsetFrom(mNote) + 50
             this.percentageActualValue = this.percentage
 
             if (this.percentage > 50 - 50 * tolerance && this.percentage < 50 + 50 * tolerance) {
                 this.percentage = 50.0
-                this.type = INDICATOR_TYPE.CORRECT
+                this.type = IndicatorType.CORRECT
             } else if (this.percentage < 0) {
                 this.percentage = 5.0
-                this.type = INDICATOR_TYPE.INCORRECT
+                this.type = IndicatorType.INCORRECT
             } else if (this.percentage > 100) {
                 this.percentage = 95.0
-                this.type = INDICATOR_TYPE.INCORRECT
+                this.type = IndicatorType.INCORRECT
             } else {
-                this.type = INDICATOR_TYPE.ACTIVE
+                this.type = IndicatorType.ACTIVE
             }
 
             this.frequency = Math.round(freq * 100.00).toFloat() / 100.00f
@@ -122,16 +119,16 @@ class TunerResult(
             this.octave = 0
             this.frequency = 0.0f
             //            this.percentage = 50.0;
-            this.type = INDICATOR_TYPE.INACTIVE
+            this.type = IndicatorType.INACTIVE
         }
 
-        if (percentageActualValue > 50f && (type == INDICATOR_TYPE.ACTIVE || type == INDICATOR_TYPE.INCORRECT)) {
-            this.statusText = "sharp by " + Math.abs(50 - (getPercentageActual()).roundToInt()) + "%"
-        } else if (percentageActualValue < 50f && (type == INDICATOR_TYPE.ACTIVE || type == INDICATOR_TYPE.INCORRECT)) {
-            this.statusText = "flat by " + Math.abs(50 - (getPercentageActual()).roundToInt()) + "%"
-        } else if (type == INDICATOR_TYPE.CORRECT) {
+        if (percentageActualValue > 50f && (type == IndicatorType.ACTIVE || type == IndicatorType.INCORRECT)) {
+            this.statusText = "sharp by " + abs(50 - (getPercentageActual()).roundToInt()) + "%"
+        } else if (percentageActualValue < 50f && (type == IndicatorType.ACTIVE || type == IndicatorType.INCORRECT)) {
+            this.statusText = "flat by " + abs(50 - (getPercentageActual()).roundToInt()) + "%"
+        } else if (type == IndicatorType.CORRECT) {
             this.statusText = "in tune."
-        } else if (type == INDICATOR_TYPE.INACTIVE) {
+        } else if (type == IndicatorType.INACTIVE) {
             this.statusText = "aux."
         }
     }
