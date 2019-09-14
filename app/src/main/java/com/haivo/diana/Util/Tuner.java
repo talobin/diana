@@ -83,7 +83,7 @@ public class Tuner {
                                           AudioFormat.ENCODING_PCM_16BIT,
                                           bufferSize);
 
-            if (NoiseSuppressor.isAvailable() && options.suppressor) {
+            if (NoiseSuppressor.isAvailable() && options.getSuppressor()) {
                 suppressor = NoiseSuppressor.create(audioRecord.getAudioSessionId());
             }
 
@@ -125,12 +125,12 @@ public class Tuner {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        pushType(result.type);
-                        TunerResult.INDICATOR_TYPE tempType = result.type;
-                        pushNote(result.note + result.octave);
-                        result.type = getType();
+                        pushType(result.getType());
+                        TunerResult.INDICATOR_TYPE tempType = result.getType();
+                        pushNote(result.getNote() + result.getOctave());
+                        result.setType(getType());
 
-                        hasValidResult.set(result.frequency > -1);
+                        hasValidResult.set(result.getFrequency() > -1);
                         hasCorrectResult.set(getType() == TunerResult.INDICATOR_TYPE.CORRECT);
 
                         if (getType() == TunerResult.INDICATOR_TYPE.CORRECT && !tunerMode.isChromatic()) {
@@ -138,9 +138,9 @@ public class Tuner {
                         }
 
                         if (!(tempType == TunerResult.INDICATOR_TYPE.INACTIVE
-                            && result.type != TunerResult.INDICATOR_TYPE.INACTIVE) && onNoteFoundListener != null && (
-                            result.note
-                                + result.octave).equals(getNote())) {
+                            && result.getType() != TunerResult.INDICATOR_TYPE.INACTIVE) && onNoteFoundListener != null && (
+                            result.getNote()
+                                + result.getOctave()).equals(getNote())) {
                             currentNoteResult = result;
                             onNoteFoundListener.onEvent(result);
                             if (getType() == TunerResult.INDICATOR_TYPE.CORRECT) {
@@ -265,8 +265,8 @@ public class Tuner {
     public void sendNullResult() {
         if (onNoteFoundListener != null) {
             TunerResult nullTunerResult = new TunerResult(0, tunerMode.getNotesObjects(), options);
-            nullTunerResult.type = TunerResult.INDICATOR_TYPE.INACTIVE;
-            nullTunerResult.percentage = 50f;
+            nullTunerResult.setType(TunerResult.INDICATOR_TYPE.INACTIVE);
+            nullTunerResult.setPercentage(50f);
             onNoteFoundListener.onEvent(nullTunerResult);
         }
     }

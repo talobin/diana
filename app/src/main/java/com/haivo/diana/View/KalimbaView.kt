@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
-import com.haivo.diana.Model.BaseNote.KALIMBA_NOTES
+import com.haivo.diana.Model.BaseNote.Companion.KALIMBA_NOTES
 import com.haivo.diana.R
 import java.util.HashMap
 

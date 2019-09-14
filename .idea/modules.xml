@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dev-diana.iml" filepath="$PROJECT_DIR$/dev-diana.iml" />
       <module fileurl="file://$PROJECT_DIR$/diana.iml" filepath="$PROJECT_DIR$/diana.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/diana-app.iml" filepath="$PROJECT_DIR$/app/diana-app.iml" />
     </modules>
   </component>
 </project>
