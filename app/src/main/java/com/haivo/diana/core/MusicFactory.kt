@@ -1,7 +1,7 @@
-package com.haivo.diana.Core
+package com.haivo.diana.core
 
-import com.haivo.diana.Model.BaseNote
-import com.haivo.diana.Util.NoteUtils
+import com.haivo.diana.model.BaseNote
+import com.haivo.diana.util.NoteUtils
 import java.util.*
 
 object MusicFactory {

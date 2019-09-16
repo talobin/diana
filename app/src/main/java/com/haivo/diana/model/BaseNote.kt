@@ -1,7 +1,7 @@
-package com.haivo.diana.Model
+package com.haivo.diana.model
 
 import androidx.databinding.ObservableBoolean
-import com.haivo.diana.Util.NoteUtils
+import com.haivo.diana.util.NoteUtils
 import kotlin.math.ln
 import kotlin.math.pow
 import kotlin.math.roundToInt

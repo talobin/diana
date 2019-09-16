@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.haivo.diana.Core.MusicEar
-import com.haivo.diana.Core.MusicFactory
+import com.haivo.diana.core.MusicEar
+import com.haivo.diana.core.MusicFactory
 import com.haivo.diana.MainActivity
-import com.haivo.diana.Model.BaseNote
-import com.haivo.diana.Model.TunerResult
+import com.haivo.diana.model.BaseNote
+import com.haivo.diana.model.TunerResult
 import com.haivo.diana.R
-import com.haivo.diana.Util.Tuner
+import com.haivo.diana.util.Tuner
 
 class MainFragment : Fragment() {
 
@@ -35,8 +35,11 @@ class MainFragment : Fragment() {
             MusicEar.start(object : Tuner.OnNoteFoundListener {
                 override fun onEvent(note: TunerResult) {
                     Log.d("Hai",
-                            note.type.toString() + "|" + note.frequencyLabel + "|" + note.percentageLabel + "|" + note
-                                    .noteLabelWithAugAndOctave + "|" + note.statusText)
+                            "${note.type}" +
+                                    "|${note.frequencyLabel}" +
+                                    "|${note.percentageLabel}" +
+                                    "|${note.noteLabelWithAugAndOctave}" +
+                                    "|${note.statusText}")
 
                     checkNote(note.noteLabelWithAugAndOctave)
                     //Log.d("Hai", "Generated Note: " + MusicFactory.getInstance().getNextNote().getNoteLabel());

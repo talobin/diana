@@ -1,6 +1,6 @@
-package com.haivo.diana.Model
+package com.haivo.diana.model
 
-import com.haivo.diana.Util.NoteUtils
+import com.haivo.diana.util.NoteUtils
 import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.roundToInt

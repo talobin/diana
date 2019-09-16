@@ -1,4 +1,4 @@
-package com.haivo.diana.Util
+package com.haivo.diana.util
 
 import android.media.AudioFormat
 import android.media.AudioRecord
@@ -7,9 +7,9 @@ import android.media.audiofx.NoiseSuppressor
 import android.os.Handler
 import android.os.Looper
 import androidx.databinding.ObservableBoolean
-import com.haivo.diana.Model.TunerMode
-import com.haivo.diana.Model.TunerOptions
-import com.haivo.diana.Model.TunerResult
+import com.haivo.diana.model.TunerMode
+import com.haivo.diana.model.TunerOptions
+import com.haivo.diana.model.TunerResult
 import java.util.*
 
 //    public Tuner(Context context) {

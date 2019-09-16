@@ -1,4 +1,4 @@
-package com.haivo.diana.Model
+package com.haivo.diana.model
 
 class TunerOptions {
     var tunerBase: Int = 0

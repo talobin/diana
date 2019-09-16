@@ -1,7 +1,7 @@
-package com.haivo.diana.Util
+package com.haivo.diana.util
 
-import com.haivo.diana.Model.BaseNote
-import com.haivo.diana.Model.TunerOptions
+import com.haivo.diana.model.BaseNote
+import com.haivo.diana.model.TunerOptions
 import kotlin.math.floor
 import kotlin.math.ln
 import kotlin.math.pow

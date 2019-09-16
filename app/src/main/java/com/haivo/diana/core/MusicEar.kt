@@ -1,10 +1,10 @@
-package com.haivo.diana.Core
+package com.haivo.diana.core
 
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import com.haivo.diana.Model.TunerMode
-import com.haivo.diana.Util.Tuner
+import com.haivo.diana.model.TunerMode
+import com.haivo.diana.util.Tuner
 
 object MusicEar {
     /* For Android 6.0 */

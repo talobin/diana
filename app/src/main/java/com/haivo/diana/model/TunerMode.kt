@@ -1,7 +1,7 @@
-package com.haivo.diana.Model
+package com.haivo.diana.model
 
 import android.content.Context
-import com.haivo.diana.Util.NoteUtils
+import com.haivo.diana.util.NoteUtils
 
 class TunerMode(val tunerOptions: TunerOptions) {
 
